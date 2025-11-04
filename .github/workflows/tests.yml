@@ -4,6 +4,8 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}   # <── 关键：让 Python 能找到 utils 包
 
     steps:
       - name: Checkout code
@@ -19,4 +21,4 @@ jobs:
           pip install pytest
 
       - name: Run tests
-        run: pytest
+        run: pytest -q
